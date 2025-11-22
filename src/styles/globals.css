@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
+@layer base, components, utilities;
 
 @theme inline {
   --color-background: #F5F7F9;
   --color-foreground: #29303F;
   --color-accent: #3C7FFF;
+}
+
+@layer components{
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
 }

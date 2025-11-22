@@ -1,5 +1,5 @@
 import { Roboto } from "next/font/google";
-import Hero from "@/components/core/Hero";
+import Hero from "@/components/features/hero-section/Hero";
 
 const roboto = Roboto({
   variable: "--font-roboto",
