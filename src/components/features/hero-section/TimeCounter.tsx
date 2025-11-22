@@ -53,12 +53,12 @@ export default function TimeCounter() {
     return (
         <div>
             <div className='text-gray-400 '>launching starts in {timeLeft.days} days</div>
-            <div className='flex items-center justify-start'>
-                <div className='text-5xl font-mono'>{two(timeLeft.hours)}</div>
-                <div className='text-5xl font-mono mx-2'>:</div>
-                <div className='text-5xl font-mono'>{two(timeLeft.minutes)}</div>
-                <div className='text-5xl font-mono mx-2'>:</div>
-                <div className='text-5xl font-mono'>{two(timeLeft.seconds)}</div>
+            <div className='flex items-center justify-start gap-3 text-5xl font-mono'>
+                <div>{two(timeLeft.hours)}</div>
+                <div>:</div>
+                <div>{two(timeLeft.minutes)}</div>
+                <div>:</div>
+                <div>{two(timeLeft.seconds)}</div>
             </div>
         </div>
     );

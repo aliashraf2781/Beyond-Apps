@@ -1,4 +1,6 @@
 import NavbarHero from '../../layout/NavbarHero';
+import HeroMockup from './HeroMockup';
+import ServicesList from './ServicesList';
 import TimeCounter from './TimeCounter';
 export default function Hero() {
     return (
@@ -8,7 +10,20 @@ export default function Hero() {
 
             {/* landing section */}
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 items-center'>
-                <TimeCounter />
+                {/* counter component */}
+                <div>
+                    <TimeCounter />
+                </div>
+
+                {/* phone mockup component */}
+                <div>
+                    <HeroMockup />
+                </div>
+
+                {/*  services section component */}
+                <div className='hidden lg:block'>
+                    <ServicesList />
+                </div>
             </div>
         </div>
     )
