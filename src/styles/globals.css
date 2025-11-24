@@ -2,35 +2,57 @@
 
 @layer base, components, utilities;
 
-@theme inline {
+@theme {
   --color-background: #f5f7f9;
   --color-foreground: #29303f;
   --color-accent: #3c7fff;
+}
+
+@layer base {
+  *::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer components {
   .container {
     @apply mx-auto px-4 sm:px-6 lg:px-8;
   }
-}
-
-.progress {
-  @apply fixed start-0 end-0 h-[5px] bg-accent bottom-[100px];
-}
-
-.parallax {
-  @apply overflow-hidden tracking-[-2px] leading-[0.8] m-0 whitespace-nowrap flex flex-nowrap;
-}
-
-.parallax .scroller {
-  @apply font-bold uppercase text-9xl flex whitespace-nowrap flex-nowrap text-foreground/20;
-}
-
-.parallax span {
-  @apply block mr-[30px];
-}
 
 
-*::-webkit-scrollbar {
-  display: none;
+  .progress {
+    @apply fixed start-0 end-0 h-[5px] bg-accent bottom-[100px];
+  }
+
+  .parallax {
+    @apply overflow-hidden tracking-[-2px] leading-[0.8] m-0 whitespace-nowrap flex flex-nowrap;
+  }
+
+  .parallax .scroller {
+    @apply font-bold uppercase text-9xl flex whitespace-nowrap flex-nowrap text-foreground/20;
+  }
+
+  .parallax span {
+    @apply block mr-[30px];
+  }
+
+
+  .folder {
+    @apply relative w-full h-[310px] transition-all duration-500 rounded-[5px_25px_25px];
+    filter: drop-shadow(0 0 0.75rem gray);
+  }
+
+  .folder::before {
+    content: "";
+    width: 200px;
+    height: 25px;
+    clip-path: path("M 0 0 L 160 0 C 185 2, 175 16, 200 18 L 0 50 z");
+    @apply absolute top-[-18px] left-0 bg-accent rounded-[25px_0_0_0];
+  }
+
+  .folder::after {
+    content: "";
+    @apply absolute top-[-18px] left-10 w-[85px] h-[5px] bg-accent rounded-b-[5px];
+  }
+
 }
