@@ -24,7 +24,7 @@ export default function Hero() {
                 </div>
 
                 {/* floating text component */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 ">
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 overflow-x-hidden">
                     <ParallaxText baseVelocity={-5}>
                         Welcome to UVER Best University Program
                     </ParallaxText>
