@@ -14,7 +14,7 @@ export default function Home() {
     <div
       className={`${roboto.className} min-h-screen`}
     >
-      <main>
+      <main className="overflow-x-hidden">
         <Hero />
         <About />
         <TimeLine />
