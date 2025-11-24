@@ -32,12 +32,12 @@ export default function NavigationBar({
   onNavigate,
 }: NavigationBarProps) {
   return (
-    <nav className="absolute top-10 md:top-40 left-8 z-50 flex flex-col gap-8">
+    <nav className="absolute top-10 left-8 z-50 flex flex-col gap-8">
       {sections.map((section, index) => (
         <button
           key={section.id}
           onClick={() => onNavigate(index)}
-          className={`ps-4 border-s-2 text-base md:text-2xl transition-all duration-300 text-left ${
+          className={`ps-4 border-s-2 text-sm md:text-md transition-all duration-300 text-left ${
             activeIndex === index
               ? "text-white font-semibold border-blue-500"
               : "text-gray-400 hover:text-white border-transparent"

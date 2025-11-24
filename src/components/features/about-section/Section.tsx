@@ -47,10 +47,10 @@ export default function Section({ section, isActive }: SectionProps) {
         ref={contentRef}
         className="container mx-auto px-8 max-w-4xl space-y-6"
       >
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
+        <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
           {section.header}
         </h2>
-        <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
+        <p className="text-gray-300 md:text-lg max-w-2xl leading-relaxed">
           {section.description}
         </p>
       </div>

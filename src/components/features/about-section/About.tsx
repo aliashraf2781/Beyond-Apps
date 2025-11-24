@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import Section from "./Section";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
+import HeroMockup from "../hero-section/HeroMockup";
 
 const sections = [
   {
@@ -80,13 +81,20 @@ export default function About() {
   return (
     <div ref={containerRef} className="relative h-screen bg-slate-900 z-0 about">
       <NavigationBar activeIndex={activeIndex} onNavigate={handleNavigate} />
-      {sections.map((section, index) => (
-        <Section
-          key={section.id}
-          section={section}
-          isActive={index === activeIndex}
-        />
-      ))}
+      <div className="h-full place-content-center grid grid-cols-2">
+        <div className="relative h-full ">
+          {sections.map((section, index) => (
+            <Section
+              key={section.id}
+              section={section}
+              isActive={index === activeIndex}
+            />
+          ))}
+        </div>
+        <div className="scale-75 md:scale-100">
+          <HeroMockup />
+        </div>
+      </div>
     </div>
   );
 }
