@@ -49,6 +49,7 @@ export default function TeamSection() {
             delay: 0.2,
             ease: "power3.out",
         });
+
     }, []);
 
     return (

@@ -7,59 +7,36 @@ export default function HeroMockup() {
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const tl = gsap.timeline({
-      paused: true,
-      scrollTrigger: {
-        trigger: ".hero",
-        start: "15% 10%",
-        end: "bottom 30%",
-        scrub: true,
-        pin: true,
-      },
-    });
-
-    tl
-      .fromTo(".phone", { top: "5%" }, { top: "110%", duration: 1 }, "0.5")
-      .fromTo(".phone", { left: "40%" }, { left: "70%", duration: 1 }, ">");
-
-    const phone = document.querySelector(".phone");
-
     window.addEventListener("mousemove", (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
 
-      gsap.to(phone, {
+      gsap.to(".phone", {
         rotateX: -y * 15,
         rotateY: x * 15,
         transformPerspective: 800,
-        // ease: "power3.out",
         duration: 0.4,
       });
     });
-  }, []);
 
+    return () => {
+      window.removeEventListener("mousemove", () => {});
+    };
+  }, []);
 
   return (
     <div
       className="
-        phone 
+        phone
         transform-3d
         perspective-[1000px]
-        hidden lg:flex 
-        w-[400px] 
-        absolute 
-        top-[10%] 
-        left-[40%] 
-        transition-all duration-500 ease-out 
-        overflow-hidden 
-        rounded-5xl 
+        transition-all duration-500 ease-out
+        overflow-hidden
+        rounded-5xl
         z-9999
       "
     >
-      <div className="w-[300px] relative pointer-events-none z-9999">
-
+      <div className="w-[200px] md:w-[300px] relative pointer-events-none mx-auto">
         {/* Phone Frame */}
         <Image
           src="/assets/phone.png"

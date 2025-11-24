@@ -12,13 +12,15 @@
   *::-webkit-scrollbar {
     display: none;
   }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 @layer components {
   .container {
     @apply mx-auto px-4 sm:px-6 lg:px-8;
   }
-
 
   .progress {
     @apply fixed start-0 end-0 h-[5px] bg-accent bottom-[100px];
@@ -29,13 +31,12 @@
   }
 
   .parallax .scroller {
-    @apply font-bold uppercase text-9xl flex whitespace-nowrap flex-nowrap text-foreground/20;
+    @apply font-bold uppercase text-5xl md:text-9xl flex whitespace-nowrap flex-nowrap text-foreground/20;
   }
 
   .parallax span {
-    @apply block mr-[30px];
+    @apply block me-[30px];
   }
-
 
   .folder {
     @apply relative w-full h-[310px] transition-all duration-500 rounded-[5px_25px_25px];
@@ -54,5 +55,4 @@
     content: "";
     @apply absolute top-[-18px] left-10 w-[85px] h-[5px] bg-accent rounded-b-[5px];
   }
-
 }

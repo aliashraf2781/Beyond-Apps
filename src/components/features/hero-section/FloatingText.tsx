@@ -48,7 +48,7 @@ export default function ParallaxText({
   });
 
   return (
-    <div className="parallax">
+    <div className="parallax overflow-hidden">
       <motion.div className="scroller" style={{ x }}>
         <span>{children} </span>
         <span>{children} </span>

@@ -1,62 +1,92 @@
+import { useRef, useState } from "react";
+import NavigationBar from "./NavigationBar";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import Section from "./Section";
 import { ScrollTrigger } from "gsap/all";
-import SectionComponent from "./SectionComponent";
+import gsap from "gsap";
 
+const sections = [
+  {
+    id: "about",
+    label: "About",
+    header: "Comprehensive College Search",
+    description:
+      "Explore a wide range of colleges and universities to find the perfect fit for your academic and personal goals.",
+  },
+  {
+    id: "our-mission",
+    label: "Our Mission",
+    header: "Personalized Advising",
+    description:
+      "Get expert guidance and support throughout your college application process with our personalized advising services.",
+  },
+  {
+    id: "our-vision",
+    label: "Our Vision",
+    header: "Application Tracker",
+    description:
+      "Stay organized and on top of your college applications with our easy-to-use application tracker.",
+  },
+];
 export default function About() {
-    gsap.registerPlugin(ScrollTrigger);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef(null);
+  gsap.registerPlugin(ScrollTrigger);
+  useGSAP(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-    useGSAP(() => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".about",
-                start: "10% 10%",
-                end: "bottom 30%",
-                scrub: true,
-                pin: true,
-            },
-        });
+    // Create scroll-based section switching
+    const totalSections = sections.length;
 
-        tl
-            .to(".phone", { top: "170%" })
-            .to(".section-2", { opacity: 0 })
-            .to(".section-3", { opacity: 1 }, "<")
-            .to(".section-3", { opacity: 0 })
-            .to(".section-4", { opacity: 1 }, "<")
+    ScrollTrigger.create({
+      trigger: container,
+      start: "top top",
+      end: `+=${(totalSections - 1) * window.innerHeight}`,
+      pin: true,
+      scrub: 1,
+      onUpdate: (self) => {
+        // Calculate which section should be active based on scroll progress
+        const newIndex = Math.min(
+          Math.floor(self.progress * totalSections),
+          totalSections - 1
+        );
+        setActiveIndex(newIndex);
+      },
+    });
 
-        gsap.from("h2", { opacity: 0, y: 50, duration: 1, stagger: 0.3 });
-        gsap.from("h2", {
-            duration: 1,
-            opacity: 0,
-            y: 30,
-            ease: "power3.out"
-        });
-    }, []);
-    return (
-        <>
-            <div className="bg-foreground min-h-screen h-screen w-full relative hero -z-20 about">
-                <div className="section-2 z-10">
-                    <SectionComponent
-                        active="about"
-                        header="Coprehensive College Search"
-                        description="Explore a wide range of colleges and universities to find the perfect fit for your academic and personal goals."
-                    />
-                </div>
-                <div className="section-3 z-20 opacity-0">
-                    <SectionComponent
-                        active="our-mission"
-                        header="Personalized Advising"
-                        description="Get expert guidance and support throughout your college application process with our personalized advising services."
-                    />
-                </div>
-                <div className="z-30 opacity-0 section-4">
-                    <SectionComponent
-                        active="our-vision"
-                        header="Application Tracker"
-                        description="Stay organized and on top of your college applications with our easy-to-use application tracker."
-                    />
-                </div>
-            </div>
-        </>
-    )
+    return () => {
+      ScrollTrigger.getById(container)?.kill();
+    };
+  }, []);
+
+  const handleNavigate = (index: number) => {
+    setActiveIndex(index);
+
+    // Scroll to the appropriate position
+    const container = containerRef.current;
+    if (!container) return;
+
+    const scrollTrigger = ScrollTrigger.getById(container);
+    if (scrollTrigger) {
+      const progress = index / (sections.length - 1);
+      const scrollPosition =
+        scrollTrigger.start +
+        (scrollTrigger.end - scrollTrigger.start) * progress;
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div ref={containerRef} className="relative h-screen bg-slate-900 z-0 about">
+      <NavigationBar activeIndex={activeIndex} onNavigate={handleNavigate} />
+      {sections.map((section, index) => (
+        <Section
+          key={section.id}
+          section={section}
+          isActive={index === activeIndex}
+        />
+      ))}
+    </div>
+  );
 }
