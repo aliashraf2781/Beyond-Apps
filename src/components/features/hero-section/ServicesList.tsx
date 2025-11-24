@@ -32,8 +32,8 @@ export default function ServicesList() {
         return (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
             className="flex items-start justify-start gap-4 transition-all duration-300"

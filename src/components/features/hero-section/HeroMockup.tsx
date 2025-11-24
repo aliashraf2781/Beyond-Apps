@@ -34,6 +34,7 @@ export default function HeroMockup() {
         overflow-hidden
         rounded-5xl
         z-9999
+        relative
       "
     >
       <div className="w-[200px] md:w-[300px] relative pointer-events-none mx-auto">
