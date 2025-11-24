@@ -50,7 +50,7 @@ export default function HeroMockup() {
         {/* Phone Screen */}
         <div className="absolute top-3 left-2 h-[96%] w-[94%] -z-10 overflow-hidden rounded-3xl">
           <Image
-            src="/assets/Placeholder_mockup2.png"
+            src="/assets/appphoto.webp"
             alt="Phone Screen"
             fill
             className="object-cover"

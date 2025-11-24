@@ -36,7 +36,7 @@ export default function TeamSection() {
             duration: 0.1,
             stagger: 0.05,
             scrollTrigger: {
-              trigger: ".team-text",
+              trigger: ".team-title",
               start: "top 80%",
             }
           }
@@ -44,7 +44,7 @@ export default function TeamSection() {
 
         gsap.from(".team-text", {
             scrollTrigger: {
-                trigger: ".team-text",
+                trigger: ".team-title",
                 start: "top 80%",
             },
             y: 40,
@@ -55,49 +55,9 @@ export default function TeamSection() {
         })
       }
     }, []);
-    // useGSAP(() => {
-    //     const tl = gsap.timeline({
-    //         scrollTrigger: {
-    //             trigger: ".team-section",
-    //             start: "top bottom",
-    //             end: "bottom top",
-    //             scrub: 1,
-    //         },
-    //     });
-
-    //     tl.fromTo(
-    //         ".team-bg",
-    //         { scale: 1.2, y: 80 },
-    //         { scale: 1, y: 0, duration: 1.5, ease: "power2.out" }
-    //     );
-
-    //     gsap.from(".team-title", {
-    //         scrollTrigger: {
-    //             trigger: ".team-section",
-    //             start: "top 80%",
-    //         },
-    //         opacity: 0,
-    //         x: 80,
-    //         duration: 1,
-    //         ease: "power3.out",
-    //     });
-
-    //     gsap.from(".team-text", {
-    //         scrollTrigger: {
-    //             trigger: ".team-section",
-    //             start: "top 75%",
-    //         },
-    //         opacity: 0,
-    //         x: 40,
-    //         duration: 1.2,
-    //         delay: 0.2,
-    //         ease: "power3.out",
-    //     });
-
-    // }, []);
 
     return (
-        <div className="relative container py-20 min-h-screen team-section overflow-hidden">
+        <div className="relative py-20 min-h-screen team-section overflow-hidden">
             <div className="absolute inset-0 h-full w-full transition-transform duration-500 ease-out team-bg">
                 <Image
                     src={"/assets/team.jpg"}
