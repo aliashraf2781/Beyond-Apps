@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function ImageCard() {
     return (
-        <div className="p-6 h-[200px] shadow-lg relative group overflow-hidden rounded-lg image-card">
+        <div className="p-6 h-[200px] md:h-full shadow-lg relative group overflow-hidden rounded-lg image-card">
             <div className=" group absolute inset-0 h-full w-full group-hover:scale-105 transition-transform duration-500 ease-out">
                 <Image
                     src={"/assets/graduates.jpeg"}

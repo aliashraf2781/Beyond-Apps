@@ -1,56 +1,100 @@
 "use client";
-
 import Image from "next/image";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { useEffect, useRef } from "react";
 
 export default function TeamSection() {
     gsap.registerPlugin(ScrollTrigger);
 
-    useGSAP(() => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".team-section",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1,
-            },
-        });
 
-        // BG Parallax
-        tl.fromTo(
-            ".team-bg",
-            { scale: 1.2, y: 80 },
-            { scale: 1, y: 0, duration: 1.5, ease: "power2.out" }
+    const textRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      const text = textRef.current;
+      const content = text?.innerText;
+      if ((text as HTMLDivElement) && content) {
+        text.innerHTML = content
+          ?.split(" ")
+          .map(
+            (char) =>
+              `<span class="opacity-0">${char === " " ? "&nbsp;" : char
+              }</span>`
+          )
+          .join(" ");
+  
+        gsap.fromTo(
+          text.querySelectorAll("span"),
+          {
+            x: -20,
+            opacity: 0,
+            stagger: 0.05,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.1,
+            stagger: 0.05,
+            scrollTrigger: {
+              trigger: ".team-text",
+              start: "top 80%",
+            }
+          }
         );
 
-        // Heading reveal
-        gsap.from(".team-title", {
-            scrollTrigger: {
-                trigger: ".team-section",
-                start: "top 80%",
-            },
-            opacity: 0,
-            x: 80,
-            duration: 1,
-            ease: "power3.out",
-        });
-
-        // Paragraph reveal (stagger)
         gsap.from(".team-text", {
             scrollTrigger: {
-                trigger: ".team-section",
-                start: "top 75%",
+                trigger: ".team-text",
+                start: "top 80%",
             },
+            y: 40,
             opacity: 0,
-            x: 40,
-            duration: 1.2,
+            duration: 1,
             delay: 0.2,
             ease: "power3.out",
-        });
-
+        })
+      }
     }, []);
+    // useGSAP(() => {
+    //     const tl = gsap.timeline({
+    //         scrollTrigger: {
+    //             trigger: ".team-section",
+    //             start: "top bottom",
+    //             end: "bottom top",
+    //             scrub: 1,
+    //         },
+    //     });
+
+    //     tl.fromTo(
+    //         ".team-bg",
+    //         { scale: 1.2, y: 80 },
+    //         { scale: 1, y: 0, duration: 1.5, ease: "power2.out" }
+    //     );
+
+    //     gsap.from(".team-title", {
+    //         scrollTrigger: {
+    //             trigger: ".team-section",
+    //             start: "top 80%",
+    //         },
+    //         opacity: 0,
+    //         x: 80,
+    //         duration: 1,
+    //         ease: "power3.out",
+    //     });
+
+    //     gsap.from(".team-text", {
+    //         scrollTrigger: {
+    //             trigger: ".team-section",
+    //             start: "top 75%",
+    //         },
+    //         opacity: 0,
+    //         x: 40,
+    //         duration: 1.2,
+    //         delay: 0.2,
+    //         ease: "power3.out",
+    //     });
+
+    // }, []);
 
     return (
         <div className="relative container py-20 min-h-screen team-section overflow-hidden">
@@ -66,7 +110,7 @@ export default function TeamSection() {
 
             <div className="absolute inset-0 z-10 text-white h-full flex flex-col justify-center items-end p-4 bg-black/40 rounded-lg">
                 <div className="md:max-w-1/2 indent-28">
-                    <h4 className="team-title indent-5 md:indent-28 text-xl md:text-3xl font-extralight mb-2 leading-12 tracking-wider">
+                    <h4 ref={textRef} className="team-title indent-5 md:indent-28 text-xl md:text-3xl font-extralight mb-2 leading-12 tracking-wider">
                         Integer porttitor congue venenatis. Nulla nec euismod lectus, at pharetra leo. Nulla luctus vestibulum ligula eget tincidunt. Ut dignissim sollicitudin.
                     </h4>
 
