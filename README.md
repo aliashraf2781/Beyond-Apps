@@ -14,7 +14,7 @@
 - Responsive UI / Mobile-first
 - React Icons
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - React 19
 - Next.js 16
@@ -23,7 +23,7 @@
 - GSAP
 - Vite / npm
 
-## 💻 Installation
+## Installation
 
 ```bash
 git clone https://github.com/aliashraf2781/Beyond-Apps.git
